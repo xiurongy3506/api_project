@@ -11,8 +11,11 @@ class ApplicationController < Sinatra::Base
   end
   
   post '/result' do
+    
+    # puts params
     user_input_city = params[:user_input_city]
-    @user_url = get_info(user_input_city)
+    @user_city_img_url = get_img(user_input_city)
+
     erb :result
   end
   
