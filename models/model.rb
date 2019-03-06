@@ -34,14 +34,33 @@ def get_population_data
     # pp JSON.parse(response)
     result = JSON.parse(response)
     # url is in str form
-    result["population"]
+    pp result["population"]
 end
 
-
-def get_img(city_img)
-    url = 'https://api.teleport.org/api/urban_areas/slug:' + city_img + '/images/'
+def get_img(city)
+    url = 'https://api.teleport.org/api/urban_areas/slug:' + city + '/images/'
     uri = URI(url)
     response = Net::HTTP.get(uri)
     result = JSON.parse(response)
     pp result["photos"][0]["image"]["web"]
 end
+
+def get_city_info
+    url = 'https://api.teleport.org/api/urban_areas/slug:' + city + '/scores/'
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    result = JSON.parse(response)
+    pp result["summary"]
+end
+
+# def quality_of_life_score
+#     url = 'https://api.teleport.org/api/urban_areas/slug:new-york/scores/'
+#     uri = URI(url)
+#     response = Net::HTTP.get(uri)
+#     result = JSON.parse(response)
+#     pp result
+# end
+
+# quality_of_life_score
+
+# https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_progressbar_labels
