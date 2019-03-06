@@ -19,12 +19,42 @@
   <body>
     
     <div class="container-fluid">
-      <h1>Input a city</h1>
-      <form method="post" action="/result">
-        <input type="text" name="user_input_city"><br>
-        <input type="submit" value="Submit">
-      </form>
+    <div id="title">
+        <h1>eXplore!</h1>
+        <img src="https://cdn.pixabay.com/photo/2015/11/04/18/33/paper-planes-1023097_1280.png" >
     </div>
+    
+    <div class="form">
+        <h2>Input a city</h2>
+        <form method="post" action="/result">
+          <input type="text" name="user_input_city" placeholder="i.e. new-york"><br>
+          <br>
+          <input type="submit" value="Submit">
+        </form>
+    </div>
+    </div>
+    
+    <style>
+      html,
+      body {
+        margin-top: 2%;
+        background: #84DAFE;
+      }
+      
+      h1 {
+        font-size: 300%;
+      }
+      
+      #title, .form {
+        margin: auto;
+        text-align: center;
+      }
+      
+      img {
+        width: 250px;
+        height: 130px;
+      }
+    </style>
     
   </body>
 </html>
