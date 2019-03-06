@@ -18,11 +18,48 @@
   </head>
   <body>
     
-    <div class="container-fluid">
-    
-      <img src = <%= @user_city_img_url %> >
-     
+    <div id="firstDiv" class="container-fluid">
+      <h1>Welcome to New York</h1>
     </div>
+    <div id="secondDiv">
+      <h1>Quality of Life Score/Information about the city</h1>
+    </div>
+    <div id="thirdDiv">
+      <h1>Fun activities to do in the city</h1>
+    </div>
+    <div id="fourthDiv">
+      <h1>Description of the city</h1>
+    </div>
+    <style>
+      #firstDiv {
+        height: 200px;
+        width: 100%;
+        background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(<%= @user_city_img_url %>);
+        background-size: cover;
+      }
+      #secondDiv{
+        width:100%;
+        height:200px;
+        background-color: blue;
+      }
+      #thirdDiv{
+        width:100%;
+        height: 200px;
+        background-color: black;
+      }
+      #fourthDiv{
+        width:100%;
+        height: 200px;
+        background-color: red;
+      }
+      h1 {
+        color: white;
+        text-align: center;
+        /*vertical-align: middle;*/
+        line-height: 150px;
+      }
+      
+    </style>
     
   </body>
 </html>
