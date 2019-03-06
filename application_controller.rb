@@ -18,6 +18,7 @@ class ApplicationController < Sinatra::Base
     
     # put this info in once Johnson finishes working on html and css/ to avoid merge conflict
     @population = get_population_data
+    
     erb :result
   end
   

@@ -17,15 +17,15 @@ require 'pp'
 # value.authorization.access_token = '123'
 # https://ridb.recreation.gov/docs#/Activities/getActivities
 
-# def get_population_link
-#     url = 'https://api.teleport.org/api/cities/?search=boston'
-#     uri = URI(url)
-#     response = Net::HTTP.get(uri)
-#     # pp JSON.parse(response)
-#     result = JSON.parse(response)
-#     # url is in str form
-#     result["_embedded"]["city:search-results"][0]["_links"]["city:item"]["href"]
-# end
+def get_population_link
+    url = 'https://api.teleport.org/api/cities/?search=boston'
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    # pp JSON.parse(response)
+    result = JSON.parse(response)
+    # url is in str form
+    result["_embedded"]["city:search-results"][0]["_links"]["city:item"]["href"]
+end
 
 def get_population_data
     url = get_population_link
@@ -36,6 +36,7 @@ def get_population_data
     # url is in str form
     pp result["population"]
 end
+
 
 def get_img(city)
     url = 'https://api.teleport.org/api/urban_areas/slug:' + city + '/images/'
