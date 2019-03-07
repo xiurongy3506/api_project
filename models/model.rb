@@ -17,15 +17,15 @@ require 'pp'
 # value.authorization.access_token = '123'
 # https://ridb.recreation.gov/docs#/Activities/getActivities
 
-# def get_population_link
-#     url = 'https://api.teleport.org/api/cities/?search=boston'
-#     uri = URI(url)
-#     response = Net::HTTP.get(uri)
-#     # pp JSON.parse(response)
-#     result = JSON.parse(response)
-#     # url is in str form
-#     result["_embedded"]["city:search-results"][0]["_links"]["city:item"]["href"]
-# end
+def get_population_link
+    url = 'https://api.teleport.org/api/cities/?search=boston'
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    # pp JSON.parse(response)
+    result = JSON.parse(response)
+    # url is in str form
+    result["_embedded"]["city:search-results"][0]["_links"]["city:item"]["href"]
+end
 
 def get_population_data
     url = get_population_link
@@ -45,15 +45,15 @@ def get_img(city)
     pp result["photos"][0]["image"]["web"]
 end
 
-def get_city_info
-    url = 'https://api.teleport.org/api/urban_areas/slug:' + city + '/scores/'
-    uri = URI(url)
-    response = Net::HTTP.get(uri)
-    result = JSON.parse(response)
-    pp result["summary"]
-end
+# def get_city_info
+#     url = 'https://api.teleport.org/api/urban_areas/slug:' + city + '/scores/'
+#     uri = URI(url)
+#     response = Net::HTTP.get(uri)
+#     result = JSON.parse(response)
+#     pp result["summary"]
+# end
 
-# def quality_of_life_score
+# # def quality_of_life_score
 #     url = 'https://api.teleport.org/api/urban_areas/slug:new-york/scores/'
 #     uri = URI(url)
 #     response = Net::HTTP.get(uri)
