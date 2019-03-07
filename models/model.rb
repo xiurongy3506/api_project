@@ -37,6 +37,7 @@ def get_population_data
     pp result["population"]
 end
 
+
 def get_img(city)
     url = 'https://api.teleport.org/api/urban_areas/slug:' + city + '/images/'
     uri = URI(url)

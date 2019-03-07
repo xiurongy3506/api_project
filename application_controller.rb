@@ -20,7 +20,6 @@ class ApplicationController < Sinatra::Base
     @population = get_population_data
     get_population_data
     
-    
     erb :result
   end
   
