@@ -16,9 +16,10 @@ class ApplicationController < Sinatra::Base
     user_input_city = params[:user_input_city]
     @user_city_img_url = get_img(user_input_city)
   
-    get_population_link(user_input_city)
+    # get_population_link(user_input_city)
     @population = get_population_data(user_input_city)
     
+    @city_description = get_city_description(user_input_city)
     
     erb :result
   end
