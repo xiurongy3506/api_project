@@ -12,13 +12,13 @@ class ApplicationController < Sinatra::Base
   
   post '/result' do
     
-    puts params
+    # puts params
     user_input_city = params[:user_input_city]
     @user_city_img_url = get_img(user_input_city)
+  
+    get_population_link(user_input_city)
+    @population = get_population_data(user_input_city)
     
-    # put this info in once Johnson finishes working on html and css/ to avoid merge conflict
-    @population = get_population_data
-    get_population_data
     
     erb :result
   end
