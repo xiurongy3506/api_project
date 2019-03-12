@@ -17,26 +17,19 @@ require 'pp'
 # value.authorization.access_token = '123'
 # https://ridb.recreation.gov/docs#/Activities/getActivities
 
-def get_population_link(city)
-    url = 'https://api.teleport.org/api/cities/?search=' + city
-    uri = URI(url)
-    response = Net::HTTP.get(uri)
-    # pp JSON.parse(response)
-    result = JSON.parse(response)
-    # url is in str form
-    pp result["_embedded"]["city:search-results"][0]["_links"]["city:item"]["href"]
-end
-
 def get_population_data(city)
-    url = get_population_link(city)
-    uri = URI(url)
+    general_url = 'https://api.teleport.org/api/cities/?search=' + city
+    uri = URI(general_url)
     response = Net::HTTP.get(uri)
-    # pp JSON.parse(response)
     result = JSON.parse(response)
-    # url is in str form
-    pp result["population"]
+    
+    # access the link with population info
+    population_link =  result["_embedded"]["city:search-results"][0]["_links"]["city:item"]["href"]
+    population_uri = URI(population_link)
+    response = Net::HTTP.get(population_uri)
+    population_result = JSON.parse(response)
+    pp population_result["population"]
 end
-
 
 def get_img(city)
     url = 'https://api.teleport.org/api/urban_areas/slug:' + city.gsub(/\s/, "-") + '/images/'
@@ -46,22 +39,33 @@ def get_img(city)
     pp result["photos"][0]["image"]["web"]
 end
 
-# def get_city_info
-#     url = 'https://api.teleport.org/api/urban_areas/slug:' + city + '/scores/'
-#     uri = URI(url)
-#     response = Net::HTTP.get(uri)
-#     result = JSON.parse(response)
-#     pp result["summary"]
-# end
+def get_city_description(city)
+    url = 'https://api.teleport.org/api/urban_areas/slug:' + city.gsub(/\s/, "-") + '/scores/'
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    result = JSON.parse(response)
+    info_string = result["summary"]
+    pp info_string.split("    ")[1]
+end
 
-# # def quality_of_life_score
-#     url = 'https://api.teleport.org/api/urban_areas/slug:new-york/scores/'
-#     uri = URI(url)
-#     response = Net::HTTP.get(uri)
-#     result = JSON.parse(response)
-#     pp result
-# end
+# get_city_info("boston")
 
-# quality_of_life_score
+# get_city_info
 
-# https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_progressbar_labels
+def quality_of_life_score
+    url = 'https://api.teleport.org/api/urban_areas/slug:new-york/scores/'
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    result = JSON.parse(response)
+    pp result["categories"]
+end
+
+quality_of_life_score
+
+#circle_bar
+# https://jsbin.com/yuquxucaga/edit?html,css,js,output
+
+# https://jsbin.com/sujihejimo/edit?html,output
+
+# how to use js in ruby
+# https://stackoverflow.com/questions/15422497/how-to-use-javascript-variables-in-ruby
