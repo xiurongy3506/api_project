@@ -13,8 +13,9 @@ require 'pp'
 # response = Net::HTTP.get(uri)
 # result = JSON.parse(response)
 # pp result
-# value = ENV['API_KEY'], ENV['PASSWORD']
-# value.authorization.access_token = '123'
+# value = ENV['API_KEY']
+# ENV['PASSWORD']
+# value.authorization.access_token = '5de4500f-f38b-4de0-913f-c89f92c4f405'
 # https://ridb.recreation.gov/docs#/Activities/getActivities
 
 def get_population_data(city)
@@ -52,15 +53,39 @@ end
 
 # get_city_info
 
-def quality_of_life_score
-    url = 'https://api.teleport.org/api/urban_areas/slug:new-york/scores/'
+def index(city)
+    url = 'https://api.teleport.org/api/urban_areas/slug:' + city.gsub(/\s/, "-") + '/scores/'
     uri = URI(url)
     response = Net::HTTP.get(uri)
     result = JSON.parse(response)
-    pp result["categories"]
+    
+    elements = []
+    #boston
+    # 0. add commute 4.4
+    elements << result["categories"][5]
+    # 1. add safety 7.7
+    elements << result["categories"][7]
+    # 2. add healthcare 9.0
+    elements << result["categories"][8]
+    # 3. add Education 8.6
+    elements << result["categories"][9]
+    # 4. add Environmental Quality 8.2
+    elements << result["categories"][10]
+    # 5. add Economy 6.5
+    elements << result["categories"][11]
+    # 6. add Internet access 5.7
+    elements << result["categories"][13]
+    # 7. add Toloerance 8.5
+    elements << result["categories"][15]
+    
+    # pp result["categories"]
+    # pp elements
 end
+# pp index('boston')[2]["score_out_of_10"].round(1)
+# pp index('boston')[3]["score_out_of_10"].round(1)
+# pp index('boston')[7]["score_out_of_10"].round(1)
+# index('boston')
 
-quality_of_life_score
 
 #circle_bar
 # https://jsbin.com/yuquxucaga/edit?html,css,js,output

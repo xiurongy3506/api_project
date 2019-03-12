@@ -10,7 +10,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- bootstrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
     <!-- custom css -->
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <!-- custom JS -->
@@ -26,8 +25,98 @@
       <h3>Description</h3>
       <p><%= @city_description %></p>
     </div>
+    
     <div id="thirdDiv">
       <h3>Quality of Life Scores</h3>
+      <div class= "container">
+        <div class="row">
+          <div class="col-sm-6" >
+            commute: 
+            <div id="myProgress" >
+              <div id="commute" class= "myBar">0%</div>
+            </div>
+            Safety: 
+            <div id="myProgress" >
+              <div id="safety" class= "myBar">0%</div>
+            </div>
+            Healthcare: 
+            <div id="myProgress" >
+              <div id="healthcare" class= "myBar">0%</div>
+            </div>
+            Education: 
+            <div id="myProgress" >
+              <div id="education" class= "myBar">0%</div>
+            </div>
+          </div>
+          
+          <div class="col-sm-6" >
+            Environmental Quality:
+            <div id="myProgress" >
+              <div id="environment" class= "myBar">0%</div>
+            </div> 
+            Economy:
+            <div id="myProgress" >
+              <div id="economy" class= "myBar">0%</div>
+            </div> 
+            Internet Access:
+            <div id="myProgress" >
+              <div id="internet" class= "myBar">0%</div>
+            </div>
+            Tolerance:
+            <div id="myProgress" >
+              <div id="tolerance" class= "myBar">0%</div>
+            </div>
+          </div>
+        </div>
+      <div> 
+      
+    <script>
+      function move() {
+        var width = 10;
+        var id = setInterval(frame, 10);
+        var commute = document.getElementById("commute"); 
+        var safety = document.getElementById("safety"); 
+        var healthcare = document.getElementById("healthcare"); 
+        var education = document.getElementById("education"); 
+        var environment = document.getElementById("environment"); 
+        var economy = document.getElementById("economy"); 
+        var internet = document.getElementById("internet"); 
+        var tolerance = document.getElementById("tolerance"); 
+        
+        function frame() {
+          if (width >= 100) {
+            clearInterval(id);
+          } else {
+            width++; 
+            commute.style.width = width * <%= @commute_score %>/10 + '%'; 
+            commute.innerHTML = "Score: <%= @commute_score %>/10";
+            
+            safety.style.width = width * <%= @safety_score %>/10 + '%'; 
+            safety.innerHTML = "Score: <%= @safety_score %>/10";
+            
+            healthcare.style.width = width * <%= @healthcare_score %>/10 + '%'; 
+            healthcare.innerHTML = "Score: <%= @healthcare_score %>/10";
+            
+            education.style.width = width * <%= @education_score %>/10 + '%'; 
+            education.innerHTML = "Score: <%= @education_score %>/10";
+            
+            environment.style.width = width * <%= @environment_score %>/10 + '%'; 
+            environment.innerHTML = "Score: <%= @environment_score %>/10";
+            
+            economy.style.width = width * <%= @economy_score %>/10 + '%'; 
+            economy.innerHTML = "Score: <%= @economy_score %>/10";
+            
+            internet.style.width = width * <%= @internet_score %>/10 + '%'; 
+            internet.innerHTML = "Score: <%= @internet_score %>/10";
+            
+            tolerance.style.width = width * <%= @tolerance_score %>/10 + '%'; 
+            tolerance.innerHTML = "Score: <%= @tolerance_score %>/10";
+          }
+        }
+      }
+      move()
+    </script>
+
     </div>
     
     <div id="fourthDiv" class="container-fluid">
@@ -51,14 +140,30 @@
         background: rgba(74,189,172,0.6);
         /*overflow: auto;*/
       }
+      
       #thirdDiv{
         width:100%;
         height: 200px;
         background: rgba(252,74,26,0.6);
       }
+      
+      #myProgress {
+        width: 100%;
+        background-color: #ddd;
+      }
+      
+      .myBar {
+        width: 0%;
+        height: 30px;
+        background-color: #4CAF50;
+        text-align: center;
+        line-height: 30px;
+        color: white;
+      }
+      
       #fourthDiv {
         display: table;
-        height: 150px;
+        /*height: 150px;*/
         width: 100%;
         background: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url(https://www.usu.edu/degrees/images/large/recreation_resource_management.jpg) no-repeat center;
         background-size: cover;
