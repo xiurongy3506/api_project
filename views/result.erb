@@ -18,7 +18,7 @@
   <body>
     
     <div id="firstDiv" class="container-fluid">
-      <h1 id="firstDivh1">Welcome to New York</h1>
+      <h1 id="firstDivh1">Welcome to <%= @city_full_name %></h1>
       <h2>Population: <%= @population %></h2>
     </div>
     <div id="secondDiv">
@@ -114,7 +114,7 @@
           }
         }
       }
-      move()
+      setTimeout(move, 1000 )
     </script>
 
     </div>

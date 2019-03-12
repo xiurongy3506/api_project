@@ -15,7 +15,8 @@ class ApplicationController < Sinatra::Base
     # puts params
     user_input_city = params[:user_input_city]
     @user_city_img_url = get_img(user_input_city)
-  
+    
+    @city_full_name = get_city_name(user_input_city)
     # get_population_link(user_input_city)
     @population = get_population_data(user_input_city)
     

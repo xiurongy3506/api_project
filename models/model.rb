@@ -29,8 +29,19 @@ def get_population_data(city)
     population_uri = URI(population_link)
     response = Net::HTTP.get(population_uri)
     population_result = JSON.parse(response)
-    pp population_result["population"]
+    population_result["population"]
 end
+
+def get_city_name(city)
+    general_url = 'https://api.teleport.org/api/cities/?search=' + city
+    uri = URI(general_url)
+    response = Net::HTTP.get(uri)
+    result = JSON.parse(response)
+    
+    pp result["_embedded"]["city:search-results"][0]["matching_full_name"]
+end
+
+get_population_data("boston")
 
 def get_img(city)
     url = 'https://api.teleport.org/api/urban_areas/slug:' + city.gsub(/\s/, "-") + '/images/'
@@ -46,8 +57,9 @@ def get_city_description(city)
     response = Net::HTTP.get(uri)
     result = JSON.parse(response)
     info_string = result["summary"]
-    pp info_string.split("    ")[1]
+    info_string.split("    ")[1]
 end
+
 
 # get_city_info("boston")
 
