@@ -19,54 +19,75 @@
   <body>
     
     <div id="firstDiv" class="container-fluid">
-      <h1>Welcome to New York</h1>
+      <h1 id="firstDivh1">Welcome to New York</h1>
       <h2>Population: <%= @population %></h2>
     </div>
     <div id="secondDiv">
-      <p>This is a paragraph of a description of the city</p>
+      <h3>Description</h3>
+      <p>This is a paragraph of a description of the city. A native robot believes. The vegetarian alien headlines your sold teenager. How does her disgust farm? Our wrong overlaps.A native robot believes. The vegetarian alien headlines your sold teenager. How does her disgust farm? Our wrong overlaps.A native robot believes. The vegetarian alien headlines your sold teenager. How does her disgust farm? Our wrong overlaps.A native robot believes. The vegetarian alien headlines your sold teenager. How does her disgust farm? Our wrong overlaps.A native robot believes. The vegetarian alien headlines your sold teenager. How does her disgust farm? Our wrong overlaps.A native robot believes. The vegetarian alien headlines your sold teenager. How does her disgust farm? Our wrong overlaps.A native robot believes. The vegetarian alien headlines your sold teenager. How does her disgust farm? Our wrong overlaps.A native robot believes. The vegetarian alien headlines your sold teenager. How does her disgust farm? Our wrong overlaps.</p>
     </div>
     <div id="thirdDiv">
-      <p>Quality of Life Scores</p>
+      <h3>Quality of Life Scores</h3>
     </div>
-    <div id="fourthDiv">
-      <h3>Activities</h3>
-      <p>for discription (i.e. camping, fishing in the city) / data will be taken through Recreation API</p</p>
+    
+    <div id="fourthDiv" class="container-fluid">
+      <h1 id="fourthDivh1">Activities</h1>
+    </div>
+    
+    <div id="fifthDiv">
+      <p>for discription (i.e. camping, fishing in the city) / data will be taken through Recreation API</p>
     </div>
     <style>
       #firstDiv {
         display: table;
-        height: 325px;
+        height: 400px;
         width: 100%;
         background: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url(<%= @user_city_img_url %>) no-repeat center center;
         background-size: cover;
       }
       #secondDiv{
         width:100%;
-        height:200px;
+        min-height:200px;
         background: rgba(74,189,172,0.6);
+        /*overflow: auto;*/
       }
       #thirdDiv{
         width:100%;
         height: 200px;
         background: rgba(252,74,26,0.6);
       }
-      #fourthDiv{
+      #fourthDiv {
+        display: table;
+        height: 150px;
+        width: 100%;
+        background: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url(https://www.usu.edu/degrees/images/large/recreation_resource_management.jpg) no-repeat center;
+        background-size: cover;
+      }
+      #fifthDiv{
         width:100%;
         height: 200px;
         background: rgba(247,183,51,0.6);
       }
-      h1 {
+      #firstDivh1 {
         color: white;
         text-align: center;
         /*vertical-align: middle;*/
         /*line-height: 200px;*/
-        padding-top: 100px;
+        padding-top: 125px;
         /*font-size: 5vw;*/
+        /*margin: auto;*/
+        /*display: inline-block;*/
+      }
+      #fourthDivh1{
+        color: white;
+        text-align: center;
+        padding-top: 30px;
       }
       h2 {
         color: white;
         text-align: center;
         /*font-size: 3vw;*/
+        
       }
       h3 {
         margin-top: 0px;
@@ -74,9 +95,12 @@
         text-align: center;
       }
       p {
-        padding-top: 20px;
+        margin-bottom: 0px;
+        /*padding-top: 10px;*/
+        /*padding-bottom: 10px;*/
+        padding: 0px 30px 20px 30px;
         color: black;
-        text-align: center;
+        /*text-align: center;*/
       }
       
       /*@media (max-width:480px) {*/
