@@ -1,6 +1,7 @@
 require 'net/http'
 require 'json'
 require 'pp'
+require 'dotenv/load'
 
 # url = 'https://api.teleport.org/api/cities/?search=Boston, New York, United States'
 # uri = URI(url)
@@ -22,7 +23,7 @@ key = ENV['API_KEY']
 uri = URI.parse("https://ridb.recreation.gov/api/v1/recareas?limit=50&offset=0&state=NY&activity=BIKING&lastupdated=10-01-2018")
 request = Net::HTTP::Get.new(uri)
 request["Accept"] = "application/json"
-request["Apikey"] = ENV['API_KEY']
+request["Apikey"] = key
 
 req_options = {
   use_ssl: uri.scheme == "https",
