@@ -60,10 +60,8 @@ def get_city_description(city)
     info_string.split("    ")[1]
 end
 
-
 # get_city_info("boston")
 
-# get_city_info
 
 def index(city)
     url = 'https://api.teleport.org/api/urban_areas/slug:' + city.gsub(/\s/, "-") + '/scores/'
@@ -93,16 +91,10 @@ def index(city)
     # pp result["categories"]
     # pp elements
 end
+
 # pp index('boston')[2]["score_out_of_10"].round(1)
 # pp index('boston')[3]["score_out_of_10"].round(1)
 # pp index('boston')[7]["score_out_of_10"].round(1)
 # index('boston')
 
 
-#circle_bar
-# https://jsbin.com/yuquxucaga/edit?html,css,js,output
-
-# https://jsbin.com/sujihejimo/edit?html,output
-
-# how to use js in ruby
-# https://stackoverflow.com/questions/15422497/how-to-use-javascript-variables-in-ruby
