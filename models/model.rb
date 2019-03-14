@@ -8,7 +8,8 @@ require 'pp'
 # result = JSON.parse(response)
 # pp result
 
-# url = 'https://ridb.recreation.gov/api/activities'
+# url = 'https://ridb.recreation.gov/api/v1/recareas?limit=50&offset=0&state=NY&activity=BIKING&lastupdated=10-01-2018
+# '
 # uri = URI(url)
 # response = Net::HTTP.get(uri)
 # result = JSON.parse(response)
@@ -17,6 +18,23 @@ require 'pp'
 # ENV['PASSWORD']
 # value.authorization.access_token = '5de4500f-f38b-4de0-913f-c89f92c4f405'
 # https://ridb.recreation.gov/docs#/Activities/getActivities
+key = ENV['API_KEY']
+uri = URI.parse("https://ridb.recreation.gov/api/v1/recareas?limit=50&offset=0&state=NY&activity=BIKING&lastupdated=10-01-2018")
+request = Net::HTTP::Get.new(uri)
+request["Accept"] = "application/json"
+request["Apikey"] = ENV['API_KEY']
+
+req_options = {
+  use_ssl: uri.scheme == "https",
+}
+
+response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+  http.request(request)
+end
+
+pp response.body
+
+
 
 def get_population_data(city)
     general_url = 'https://api.teleport.org/api/cities/?search=' + city
