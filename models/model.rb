@@ -1,6 +1,7 @@
 require 'net/http'
 require 'json'
 require 'pp'
+require 'dotenv/load'
 
 # url = 'https://api.teleport.org/api/cities/?search=Boston, New York, United States'
 # uri = URI(url)
@@ -18,11 +19,12 @@ require 'pp'
 # ENV['PASSWORD']
 # value.authorization.access_token = '5de4500f-f38b-4de0-913f-c89f92c4f405'
 # https://ridb.recreation.gov/docs#/Activities/getActivities
+
 key = ENV['API_KEY']
 uri = URI.parse("https://ridb.recreation.gov/api/v1/recareas?limit=50&offset=0&state=NY&activity=BIKING&lastupdated=10-01-2018")
 request = Net::HTTP::Get.new(uri)
 request["Accept"] = "application/json"
-request["Apikey"] = ENV['API_KEY']
+request["Apikey"] = key
 
 req_options = {
   use_ssl: uri.scheme == "https",
@@ -32,7 +34,16 @@ response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
   http.request(request)
 end
 
-pp response.body
+recreation_data = response.body
+hash = eval(recreation_data)
+# grabs site name
+# pp hash[:RECDATA][0][:RecAreaName]
+# grabs site description
+# pp hash[:RECDATA][0][:RecAreaDescription]
+# direction
+# pp hash[:RECDATA][0][:RecAreaDirections]
+#contact
+#  pp hash[:RECDATA][0][:RecAreaPhone]
 
 
 
@@ -114,5 +125,3 @@ end
 # pp index('boston')[3]["score_out_of_10"].round(1)
 # pp index('boston')[7]["score_out_of_10"].round(1)
 # index('boston')
-
-
