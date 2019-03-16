@@ -126,10 +126,10 @@
     </div>
     
     <div id="fifthDiv">
-      <h3>Activity title</h3>
-      <p>for discription (i.e. camping, fishing in the city) / data will be taken through Recreation API</p>
-      <h3>Direction</h3>
-      <h3>Contact</h3>
+      <h3><%= @recreation_name %></h3>
+      <p><%= @recreation_description %></p>
+      <h4>Direction: <%= @recreation_direction %></h4>
+      <h4>Contact Information: <%= @recreation_contact %></h4>
     </div>
     
     <style>
@@ -165,7 +165,7 @@
         text-align: center;
         line-height: 30px;
         color: white;
-        margin-bottom: 25px;
+        margin-bottom: 20px;
       }
       
       #fourthDiv {
@@ -195,7 +195,11 @@
         text-align: center;
         padding-top: 30px;
       }
+      h1{
+        font-size: 25px;
+      }
       h2 {
+        font-size: 20px;
         color: white;
         text-align: center;
         /*font-size: 3vw;*/
@@ -204,43 +208,56 @@
       }
       h3 {
         margin-top: 0px;
-        margin-bottom: 0px;
+        /*margin-bottom: 0px;*/
         padding-top: 20px;
+        /*padding-bottom: 10px;*/
         text-align: center;
+      }
+      h4 {
+        text-align: center;
+        margin-bottom: 0px;
+        padding-bottom: 10px;
       }
       p {
         margin-bottom: 0px;
         /*padding-top: 10px;*/
         /*padding-bottom: 10px;*/
-        padding: 0px 30px 20px 30px;
+        padding: 0px 30px 10px 30px;
         color: black;
         /*text-align: center;*/
       }
       
-      /*@media (max-width:480px) {*/
-      /*  h1{*/
-      /*    font-size:10px;*/
-      /*  }*/
-      /*  h2{*/
-      /*    font-size:5px;*/
-      /*  }*/
-      /*}*/
-      @media (max-width:768px) {
+      @media (min-width:480px) {
         h1{
           font-size:30px;
         }
         h2{
           font-size:25px;
         }
+        p {
+          padding-left: 50px;
+          padding-right: 50px;
+        }
       }
-      /*@media (max-width:992px) {*/
-      /*  h1{*/
-      /*    font-size:40px;*/
-      /*  }*/
-      /*  h2{*/
-      /*    font-size:30px;*/
-      /*  }*/
-      /*}*/
+      
+      @media (min-width:768px) {
+        h1{
+          font-size:40px;
+        }
+        h2{
+          font-size:30px;
+        }
+        p {
+          padding-left: 100px;
+          padding-right: 100px;
+        }
+      }
+      @media (min-width:992px) {
+        p {
+          padding-left: 150px;
+          padding-right: 150px;
+        }
+      }
     </style>
   </body>
 </html>
