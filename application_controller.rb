@@ -30,6 +30,12 @@ class ApplicationController < Sinatra::Base
     @economy_score = index(user_input_city)[5]["score_out_of_10"].round(1)
     @internet_score = index(user_input_city)[6]["score_out_of_10"].round(1)
     @tolerance_score = index(user_input_city)[7]["score_out_of_10"].round(1)
+    
+    #recreation data
+    @recreation_name = recreation_api[0]
+    @recreation_description = recreation_api[1]
+    @recreation_direction = recreation_api[2]
+    @recreation_contact = recreation_api[3]
     erb :result
   end
   

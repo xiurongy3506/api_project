@@ -3,49 +3,34 @@ require 'json'
 require 'pp'
 require 'dotenv/load'
 
-# url = 'https://api.teleport.org/api/cities/?search=Boston, New York, United States'
-# uri = URI(url)
-# response = Net::HTTP.get(uri)
-# result = JSON.parse(response)
-# pp result
+def recreation_api
+    uri = URI.parse("https://ridb.recreation.gov/api/v1/recareas?limit=50&offset=0&state=NY&activity=BIKING&lastupdated=10-01-2018")
+    request = Net::HTTP::Get.new(uri)
+    request["Accept"] = "application/json"
+    request["Apikey"] = ENV['API_KEY']
 
-# url = 'https://ridb.recreation.gov/api/v1/recareas?limit=50&offset=0&state=NY&activity=BIKING&lastupdated=10-01-2018
-# '
-# uri = URI(url)
-# response = Net::HTTP.get(uri)
-# result = JSON.parse(response)
-# pp result
-# value = ENV['API_KEY']
-# ENV['PASSWORD']
-# value.authorization.access_token = '5de4500f-f38b-4de0-913f-c89f92c4f405'
-# https://ridb.recreation.gov/docs#/Activities/getActivities
+    req_options = {
+    use_ssl: uri.scheme == "https",
+    }
 
-key = ENV['API_KEY']
-uri = URI.parse("https://ridb.recreation.gov/api/v1/recareas?limit=50&offset=0&state=NY&activity=BIKING&lastupdated=10-01-2018")
-request = Net::HTTP::Get.new(uri)
-request["Accept"] = "application/json"
-request["Apikey"] = key
+    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+    http.request(request)
+    end
 
-req_options = {
-  use_ssl: uri.scheme == "https",
-}
-
-response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-  http.request(request)
+    recreation_data = response.body
+    hash = eval(recreation_data)
+    
+    recreation_data = []
+    # grabs site name
+    recreation_data << hash[:RECDATA][0][:RecAreaName]
+    # grabs site description
+    recreation_data << hash[:RECDATA][0][:RecAreaDescription]
+    # direction
+    recreation_data << hash[:RECDATA][0][:RecAreaDirections]
+    # contact
+    recreation_data << hash[:RECDATA][0][:RecAreaPhone]
 end
-
-recreation_data = response.body
-hash = eval(recreation_data)
-# grabs site name
-# pp hash[:RECDATA][0][:RecAreaName]
-# grabs site description
-# pp hash[:RECDATA][0][:RecAreaDescription]
-# direction
-# pp hash[:RECDATA][0][:RecAreaDirections]
-#contact
-#  pp hash[:RECDATA][0][:RecAreaPhone]
-
-
+# pp recreation_api[0]
 
 def get_population_data(city)
     general_url = 'https://api.teleport.org/api/cities/?search=' + city
