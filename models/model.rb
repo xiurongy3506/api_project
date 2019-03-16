@@ -18,7 +18,7 @@ def get_city_name(city)
     
     @city_name = result["_embedded"]["city:search-results"][0]["matching_full_name"]
 end
-# get_city_name("san francisco")
+# get_city_name("new york")
 
 def get_state_abbreviation
     state = {
@@ -83,10 +83,8 @@ def get_state_abbreviation
     }
     
     state.each do |abbreviation, full_name|
-       
-        
         if (@city_name.split(", ")[0].upcase == state[abbreviation].upcase) || (@city_name.split(", ")[1].upcase == state[abbreviation].upcase)
-            pp @state = abbreviation
+            pp  @state = abbreviation
         end
     end
 end
@@ -124,7 +122,6 @@ def recreation_api
 end
 # pp recreation_api[0]
 
-
 def get_population_data(city)
     if city == "san francisco bay area"
         url_name = "san francisco"
@@ -146,31 +143,17 @@ def get_population_data(city)
     population_result = JSON.parse(response)
     population_result["population"]
 end
-
 # get_population_data("boston")
 
 def get_img(city)
     # make what user type match the img name
-    # if city == "san francisco"
-    #     img_name = "san francisco bay area"
-    #     url = 'https://api.teleport.org/api/urban_areas/slug:' + img_name.gsub(/\s/, "-") + '/images/'
-    # else
-    url = 'https://api.teleport.org/api/urban_areas/slug:' + city.gsub(/\s/, "-") + '/images/'
+    if city == "san francisco"
+        img_name = "san francisco bay area"
+        url = 'https://api.teleport.org/api/urban_areas/slug:' + img_name.gsub(/\s/, "-") + '/images/'
+    else
+    url = 'https://api.teleport.org/api/urban_areas/slug:' + city.downcase.gsub(/\s/, "-") + '/images/'
     end
     
-def get_city_name(city)
-    general_url = 'https://api.teleport.org/api/cities/?search=' + city.downcase
-    uri = URI(general_url)
-    response = Net::HTTP.get(uri)
-    result = JSON.parse(response)
-    
-    pp result["_embedded"]["city:search-results"][0]["matching_full_name"]
-end
-get_population_data("boston")
-
-def get_img(city)
-    url = 'https://api.teleport.org/api/urban_areas/slug:' + city.downcase.gsub(/\s/, "-") + '/images/'
-
     uri = URI(url)
     response = Net::HTTP.get(uri)
     result = JSON.parse(response)
