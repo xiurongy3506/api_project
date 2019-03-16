@@ -18,6 +18,7 @@ class ApplicationController < Sinatra::Base
     
     @city_full_name = get_city_name(user_input_city)
     # get_population_link(user_input_city)
+    get_state_abbreviation
     @population = get_population_data(user_input_city)
     
     #Quality of Life scores
