@@ -47,62 +47,76 @@ def get_population_data(city)
 end
 
 def get_city_name(city)
-    general_url = 'https://api.teleport.org/api/cities/?search=' + city.downcase
-    uri = URI(general_url)
-    response = Net::HTTP.get(uri)
-    result = JSON.parse(response)
-    
-    pp result["_embedded"]["city:search-results"][0]["matching_full_name"]
+    begin
+        general_url = 'https://api.teleport.org/api/cities/?search=' + city.downcase
+        uri = URI(general_url)
+        response = Net::HTTP.get(uri)
+        result = JSON.parse(response)
+        pp result["_embedded"]["city:search-results"][0]["matching_full_name"]
+    rescue
+        result = ["Sorry, city not found"]
+    end
 end
 
 
 get_population_data("boston")
 
 def get_img(city)
-    url = 'https://api.teleport.org/api/urban_areas/slug:' + city.downcase.gsub(/\s/, "-") + '/images/'
-    uri = URI(url)
-    response = Net::HTTP.get(uri)
-    result = JSON.parse(response)
-    pp result["photos"][0]["image"]["web"]
+    begin
+        url = 'https://api.teleport.org/api/urban_areas/slug:' + city.downcase.gsub(/\s/, "-") + '/images/'
+        uri = URI(url)
+        response = Net::HTTP.get(uri)
+        result = JSON.parse(response)
+        pp result["photos"][0]["image"]["web"]
+    rescue
+        result = ["Sorry, city not found"]
+    end
 end
 
 def get_city_description(city)
-    url = 'https://api.teleport.org/api/urban_areas/slug:' + city.downcase.gsub(/\s/, "-") + '/scores/'
-    uri = URI(url)
-    response = Net::HTTP.get(uri)
-    result = JSON.parse(response)
-    info_string = result["summary"]
-    info_string.split("    ")[1]
+    begin
+        url = 'https://api.teleport.org/api/urban_areas/slug:' + city.downcase.gsub(/\s/, "-") + '/scores/'
+        uri = URI(url)
+        response = Net::HTTP.get(uri)
+        result = JSON.parse(response)
+        info_string = result["summary"]
+        info_string.split("    ")[1]
+    rescue
+        result = ["Sorry, city not found"]
+    end
 end
 
 # get_city_info("boston")
 
 
 def index(city)
-    url = 'https://api.teleport.org/api/urban_areas/slug:' + city.downcase.gsub(/\s/, "-") + '/scores/'
-    uri = URI(url)
-    response = Net::HTTP.get(uri)
-    result = JSON.parse(response)
+    begin
+        url = 'https://api.teleport.org/api/urban_areas/slug:' + city.downcase.gsub(/\s/, "-") + '/scores/'
+        uri = URI(url)
+        response = Net::HTTP.get(uri)
+        result = JSON.parse(response)
     
-    elements = []
-    #boston
-    # 0. add commute 4.4
-    elements << result["categories"][5]
-    # 1. add safety 7.7
-    elements << result["categories"][7]
-    # 2. add healthcare 9.0
-    elements << result["categories"][8]
-    # 3. add Education 8.6
-    elements << result["categories"][9]
-    # 4. add Environmental Quality 8.2
-    elements << result["categories"][10]
-    # 5. add Economy 6.5
-    elements << result["categories"][11]
-    # 6. add Internet access 5.7
-    elements << result["categories"][13]
-    # 7. add Toloerance 8.5
-    elements << result["categories"][15]
-    
+        elements = []
+        #boston
+        # 0. add commute 4.4
+        elements << result["categories"][5]
+        # 1. add safety 7.7
+        elements << result["categories"][7]
+        # 2. add healthcare 9.0
+        elements << result["categories"][8]
+        # 3. add Education 8.6
+        elements << result["categories"][9]
+        # 4. add Environmental Quality 8.2
+        elements << result["categories"][10]
+        # 5. add Economy 6.5
+        elements << result["categories"][11]
+        # 6. add Internet access 5.7
+        elements << result["categories"][13]
+        # 7. add Toloerance 8.5
+        elements << result["categories"][15]
+    rescue
+        result = ["Sorry, city not found"]
+    end
     # pp result["categories"]
     # pp elements
 end
