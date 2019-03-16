@@ -70,7 +70,7 @@
         </div>
       <div> 
       
-    <script>
+      <script>
       function move() {
         var width = 10;
         var id = setInterval(frame, 10);
@@ -115,8 +115,9 @@
         }
       }
       setTimeout(move, 1000 )
-    </script>
+      </script>
 
+    </div>
     </div>
     </div>
     
@@ -125,7 +126,10 @@
     </div>
     
     <div id="fifthDiv">
+      <h3>Activity title</h3>
       <p>for discription (i.e. camping, fishing in the city) / data will be taken through Recreation API</p>
+      <h3>Direction</h3>
+      <h3>Contact</h3>
     </div>
     
     <style>
@@ -173,7 +177,7 @@
       }
       #fifthDiv{
         width:100%;
-        height: 200px;
+        min-height: 200px;
         background: rgba(247,183,51,0.6);
       }
       #firstDivh1 {
@@ -195,10 +199,12 @@
         color: white;
         text-align: center;
         /*font-size: 3vw;*/
-        
+        /*margin-top: 0px;*/
+        /*padding-top: 10px;*/
       }
       h3 {
         margin-top: 0px;
+        margin-bottom: 0px;
         padding-top: 20px;
         text-align: center;
       }
