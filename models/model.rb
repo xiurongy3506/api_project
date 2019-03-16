@@ -131,7 +131,7 @@ def get_population_data(city)
         general_url = 'https://api.teleport.org/api/cities/?search=' + url_name
         uri = URI(general_url)
     else
-        general_url = 'https://api.teleport.org/api/cities/?search=' + city
+        general_url = 'https://api.teleport.org/api/cities/?search=' + city.downcase
         uri = URI(general_url)
     end
     
@@ -146,6 +146,7 @@ def get_population_data(city)
     population_result = JSON.parse(response)
     population_result["population"]
 end
+
 # get_population_data("boston")
 
 def get_img(city)
@@ -155,8 +156,21 @@ def get_img(city)
     #     url = 'https://api.teleport.org/api/urban_areas/slug:' + img_name.gsub(/\s/, "-") + '/images/'
     # else
     url = 'https://api.teleport.org/api/urban_areas/slug:' + city.gsub(/\s/, "-") + '/images/'
-    # end
+    end
     
+def get_city_name(city)
+    general_url = 'https://api.teleport.org/api/cities/?search=' + city.downcase
+    uri = URI(general_url)
+    response = Net::HTTP.get(uri)
+    result = JSON.parse(response)
+    
+    pp result["_embedded"]["city:search-results"][0]["matching_full_name"]
+end
+get_population_data("boston")
+
+def get_img(city)
+    url = 'https://api.teleport.org/api/urban_areas/slug:' + city.downcase.gsub(/\s/, "-") + '/images/'
+
     uri = URI(url)
     response = Net::HTTP.get(uri)
     result = JSON.parse(response)
@@ -164,7 +178,7 @@ def get_img(city)
 end
 
 def get_city_description(city)
-    url = 'https://api.teleport.org/api/urban_areas/slug:' + city.gsub(/\s/, "-") + '/scores/'
+    url = 'https://api.teleport.org/api/urban_areas/slug:' + city.downcase.gsub(/\s/, "-") + '/scores/'
     uri = URI(url)
     response = Net::HTTP.get(uri)
     result = JSON.parse(response)
@@ -174,7 +188,7 @@ end
 # get_city_info("boston")
 
 def index(city)
-    url = 'https://api.teleport.org/api/urban_areas/slug:' + city.gsub(/\s/, "-") + '/scores/'
+    url = 'https://api.teleport.org/api/urban_areas/slug:' + city.downcase.gsub(/\s/, "-") + '/scores/'
     uri = URI(url)
     response = Net::HTTP.get(uri)
     result = JSON.parse(response)
