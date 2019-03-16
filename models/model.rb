@@ -33,7 +33,7 @@ end
 # pp recreation_api[0]
 
 def get_population_data(city)
-    general_url = 'https://api.teleport.org/api/cities/?search=' + city
+    general_url = 'https://api.teleport.org/api/cities/?search=' + city.downcase
     uri = URI(general_url)
     response = Net::HTTP.get(uri)
     result = JSON.parse(response)
@@ -47,7 +47,7 @@ def get_population_data(city)
 end
 
 def get_city_name(city)
-    general_url = 'https://api.teleport.org/api/cities/?search=' + city
+    general_url = 'https://api.teleport.org/api/cities/?search=' + city.downcase
     uri = URI(general_url)
     response = Net::HTTP.get(uri)
     result = JSON.parse(response)
@@ -55,10 +55,11 @@ def get_city_name(city)
     pp result["_embedded"]["city:search-results"][0]["matching_full_name"]
 end
 
+
 get_population_data("boston")
 
 def get_img(city)
-    url = 'https://api.teleport.org/api/urban_areas/slug:' + city.gsub(/\s/, "-") + '/images/'
+    url = 'https://api.teleport.org/api/urban_areas/slug:' + city.downcase.gsub(/\s/, "-") + '/images/'
     uri = URI(url)
     response = Net::HTTP.get(uri)
     result = JSON.parse(response)
@@ -66,7 +67,7 @@ def get_img(city)
 end
 
 def get_city_description(city)
-    url = 'https://api.teleport.org/api/urban_areas/slug:' + city.gsub(/\s/, "-") + '/scores/'
+    url = 'https://api.teleport.org/api/urban_areas/slug:' + city.downcase.gsub(/\s/, "-") + '/scores/'
     uri = URI(url)
     response = Net::HTTP.get(uri)
     result = JSON.parse(response)
@@ -78,7 +79,7 @@ end
 
 
 def index(city)
-    url = 'https://api.teleport.org/api/urban_areas/slug:' + city.gsub(/\s/, "-") + '/scores/'
+    url = 'https://api.teleport.org/api/urban_areas/slug:' + city.downcase.gsub(/\s/, "-") + '/scores/'
     uri = URI(url)
     response = Net::HTTP.get(uri)
     result = JSON.parse(response)
