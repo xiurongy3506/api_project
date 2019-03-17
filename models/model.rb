@@ -195,7 +195,7 @@ def get_city_description(city)
         result = ["Sorry, city not found"]
     end
 end
-puts get_city_description("boston")
+# puts get_city_description("boston")
 
 
 
