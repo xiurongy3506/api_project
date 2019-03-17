@@ -20,17 +20,17 @@ class ApplicationController < Sinatra::Base
     # get_population_link(user_input_city)
     get_state_abbreviation
     @population = get_population_data(user_input_city)
+    @city_description = get_city_description(user_input_city)
     
     #Quality of Life scores
-    @city_description = get_city_description(user_input_city)
-    @commute_score = commute(user_input_city)
-    @safety_score = safety(user_input_city)
-    @healthcare_score = healthcare(user_input_city)
-    @education_score = education(user_input_city)
-    @environment_score = environment(user_input_city)
-    @economy_score = economy(user_input_city)
-    @internet_score = internet(user_input_city)
-    @tolerance_score = tolerance(user_input_city)
+    @commute_score = score(user_input_city)[0]
+    @safety_score = score(user_input_city)[1]
+    @healthcare_score = score(user_input_city)[2]
+    @education_score = score(user_input_city)[3]
+    @environment_score = score(user_input_city)[4]
+    @economy_score = score(user_input_city)[5]
+    @internet_score = score(user_input_city)[6]
+    @tolerance_score = score(user_input_city)[7]
     
     #recreation data
     @recreation_name = recreation_api[0]
