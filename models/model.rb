@@ -21,7 +21,6 @@ def get_city_name(city)
     rescue
         result = ["Sorry, city not found"]
     end
-
 end
 # get_city_name("new york")
 
@@ -96,7 +95,6 @@ def get_state_abbreviation
     rescue
         @state = ["Sorry, city not found"]
     end
-
 end
 # get_state_abbreviation
 
@@ -160,7 +158,6 @@ def get_population_data(city)
             result = ["Sorry, city not found"]
         end
 end
-
 # get_population_data("boston")
 
 def get_img(city)
@@ -195,10 +192,7 @@ def get_city_description(city)
         result = ["Sorry, city not found"]
     end
 end
-puts get_city_description("boston")
-
-
-
+# get_city_description("boston")
 
 def commute(city)
     begin
@@ -232,10 +226,6 @@ def commute(city)
     # pp result["categories"]
     # pp elements
 end
-
-
-
-
 
 def commute(city)
     begin
@@ -364,8 +354,3 @@ def tolerance(city)
         result = ["Sorry, city not found"]
     end
 end
-
-
-# pp index('boston')[2]["score_out_of_10"].round(1)
-# pp index('boston')[3]["score_out_of_10"].round(1)
-# pp index('boston')[7]["score_out_of_10"].round(1)
