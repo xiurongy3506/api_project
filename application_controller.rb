@@ -23,14 +23,14 @@ class ApplicationController < Sinatra::Base
     
     #Quality of Life scores
     @city_description = get_city_description(user_input_city)
-    @commute_score = index(user_input_city)[0]["score_out_of_10"].round(1)
-    @safety_score = index(user_input_city)[1]["score_out_of_10"].round(1)
-    @healthcare_score = index(user_input_city)[2]["score_out_of_10"].round(1)
-    @education_score = index(user_input_city)[3]["score_out_of_10"].round(1)
-    @environment_score = index(user_input_city)[4]["score_out_of_10"].round(1)
-    @economy_score = index(user_input_city)[5]["score_out_of_10"].round(1)
-    @internet_score = index(user_input_city)[6]["score_out_of_10"].round(1)
-    @tolerance_score = index(user_input_city)[7]["score_out_of_10"].round(1)
+    @commute_score = commute(user_input_city)
+    @safety_score = safety(user_input_city)
+    @healthcare_score = healthcare(user_input_city)
+    @education_score = education(user_input_city)
+    @environment_score = environment(user_input_city)
+    @economy_score = economy(user_input_city)
+    @internet_score = internet(user_input_city)
+    @tolerance_score = tolerance(user_input_city)
     
     #recreation data
     @recreation_name = recreation_api[0]
