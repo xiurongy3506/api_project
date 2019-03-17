@@ -189,12 +189,13 @@ def get_city_description(city)
         response = Net::HTTP.get(uri)
         result = JSON.parse(response)
         info_string = result["summary"]
-        info_string.split("    ")[1]
+        # info_string.split("    ")[1]
+        pp info_string
     rescue
         result = ["Sorry, city not found"]
     end
 end
-# get_city_info("boston")
+# puts get_city_description("boston")
 
 
 
