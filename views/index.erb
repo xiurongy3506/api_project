@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <!-- custom JS -->
     <script src="js/script.js"></script>
+    
+   <link href="https://fonts.googleapis.com/css?family=B612+Mono|Jura|Mallanna|Megrim|Open+Sans+Condensed:300|Poiret+One|Fredericka+the+Great|Share+Tech+Mono" rel="stylesheet">
+
+    
   </head>
   <body>
     
@@ -26,21 +30,20 @@
     </div>
     
     <div class="form">
-        <h2>Input a city</h2>
+        <h2 class = "font">Input a city</h2>
         <form method="post" action="/result">
-          <input type="text" name="user_input_city" placeholder="i.e. new york"><br>
-          <button type="submit" class="button" value ="submit" style="vertical-align:middle"><span>Submit </span></button>
+          <input type="text" class = "font size" name="user_input_city" placeholder="i.e. new york"><br>
+          <button type="submit" class="button font" value ="submit" style="vertical-align:middle"><span>Submit </span></button>
           <!--<input type="submit" value="Submit">-->
         </form>
     </div>
     
-    <br>
+    <br><br>
     <div id= "content">
       <p>Our app uses APIs from Teleport and The Recreation Information Database (RIDB).
       </p>
       <p>data source: </p>
-      <p><a href = "https://ridb.recreation.gov/">ridb.recreation.gov</a></p>
-      <p><a href = "https://developers.teleport.org/">developers.teleport.org/api/</a></p>
+      <p><a href = "https://ridb.recreation.gov/">ridb.recreation.gov</a> | <a href = "https://developers.teleport.org/">developers.teleport.org/api/</a></p>
     </div>
       
   </div>
@@ -48,12 +51,27 @@
     <style>
       html,
       body {
-        margin-top: 2%;
+        margin-top: 1.5%;
         background: #84DAFE;
       }
       
       h1 {
-        font-size: 300%;
+        font-size: 550%;
+        font-family: 'Share Tech Mono', monospace;
+        text-shadow: 3px 2px 4px #FFFFFF;
+        /*font-family: 'Megrim', cursive;*/
+        color: #374290;
+        margin-bottom: 2.5%;
+      }
+      
+      h2 {
+        font-size: 30px;
+        color: #374290;
+      }
+      
+      .font {
+        /*font-weight: bold;*/
+        font-family: 'Jura', sans-serif;
       }
       
       #title, .form {
@@ -61,13 +79,10 @@
         text-align: center;
       }
       
-      img {
-        width: 200px;
-        height: 200px;
-      }
-      
       #content {
         text-align: center;
+        color: black;
+        font-family: 'Open Sans Condensed';
       }
 
     .button {
@@ -109,6 +124,44 @@
       opacity: 1;
       right: 0;
     }
+    
+    @media (min-width:0px) {
+        h1{
+          font-size:390%;
+        }
+        h2{
+          font-size:25px;
+        }
+        img {
+          width: 150px;
+          height: 150px;
+        }
+         #content{
+          font-size: 14px;
+        }
+         .size {
+        font-size: 15px;
+        }
+      }
+      
+      @media (min-width:768px) {
+        h1{
+          font-size:550%;
+        }
+        h2{
+          font-size:30px;
+        }
+        img {
+          width: 200px;
+          height: 200px;
+        }
+       #content{
+          font-size: 17px;
+        }
+       .size {
+        font-size: 16px;
+        }
+      }
     </style>
     
   </body>
