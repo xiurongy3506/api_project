@@ -13,6 +13,7 @@ class ApplicationController < Sinatra::Base
   post '/result' do
     
     # puts params
+    user_activities = params[:user_activities]
     user_input_city = params[:user_input_city]
     @user_city_img_url = get_img(user_input_city)
     
@@ -21,6 +22,8 @@ class ApplicationController < Sinatra::Base
     get_state_abbreviation
     @population = get_population_data(user_input_city)
     @city_description = get_city_description(user_input_city)
+    
+    @activity_name = get_activity_name(user_activities)
     
     #Quality of Life scores
     @commute_score = score(user_input_city)[0]

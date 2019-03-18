@@ -32,7 +32,61 @@
     <div class="form">
         <h2 class = "font">Input a city</h2>
         <form method="post" action="/result">
-          <input type="text" class = "font size" name="user_input_city" placeholder="i.e. new york"><br>
+        <input type="text" class = "font size" name="user_input_city" placeholder="i.e. new york"><br>
+        
+        <h2 class = "font">Activities</h2>
+        <input list="activities" class= "font size" name="user_activities" />
+        <datalist id="activities">
+          <option value="ACCESSIBLE SWIMMING">
+          <option value="AMPHITHEATER">
+          <option value="ANTIQUING">
+          <option value="ARCHERY">
+          <option value="AUTO TOURING">
+          <option value="BACKPACKING">
+          <option value="BADMINTON">
+          <option value="BEACHCAMPING">
+          <option value="BEACHCOMBING">
+          <option value="BERRY PICKING">
+          <option value="BIKING">
+          <option value="BIRDING">
+          <option value="BIRD WATCHING">
+          <option value="BOATING">
+          <option value="BOAT RENTAL">
+          <option value="CAMPING">
+          <option value="CANOEING">
+          <option value="CAVING">
+          <option value="CLAM DIGGING">
+          <option value="CLIMBING">
+          <option value="CRABBING">
+          <option value="CRAWFISHING">
+          <option value="CROSS COUNTRY SKIING">
+          <option value="CULTURAL ACTIVITIES">
+          <option value="DAY USE AREA">
+          <option value="DISC GOLF">
+          <option value="DIVING">
+          <option value="COCUMENTARY SITE">
+          <option value="DOWNHILL SKIING">
+          <option value="EDUCATIONAL PROGRAMS">
+          <option value="EMERGENCY SERVICES">
+          <option value="ENVIRONMENTAL EDUCATION">
+          <option value="EVENING PROGRAMS">
+          <!--<option value="FIRE LOOKOUTS/CABINS OVERNIGHT">-->
+          <option value="FISH HATCHERY">
+          <option value="FISHING">
+          <option value="FISH VIEWING SITE">
+          <option value="GOLD PANNING">
+          <option value="GOLF">
+          <option value="GONDOLA RIDES">
+          <option value="GUIDED INTERPRETIVE WALKS">
+          <option value="HIKING">
+          <option value="HIKING TRAIL">
+          <option value="HISTORIC & CULTURAL SITE">
+          <option value="HISTORIC SITES">
+          <option value="HORSEBACK RIDING">
+          <option value="HORSE CAMPING">
+          <option value="HUNTING">
+        </datalist> <br>
+
           <button type="submit" class="button font" value ="submit" style="vertical-align:middle"><span>Submit </span></button>
           <!--<input type="submit" value="Submit">-->
         </form>
@@ -42,8 +96,7 @@
     <div id= "content">
       <p>Our app uses APIs from Teleport and The Recreation Information Database (RIDB).
       </p>
-      <p>data source: </p>
-      <p><a href = "https://ridb.recreation.gov/">ridb.recreation.gov</a> | <a href = "https://developers.teleport.org/">developers.teleport.org/api/</a></p>
+      <p>Data source: <br><a href = "https://ridb.recreation.gov/">ridb.recreation.gov</a> | <a href = "https://developers.teleport.org/">developers.teleport.org/api/</a></p>
     </div>
       
   </div>
@@ -51,7 +104,7 @@
     <style>
       html,
       body {
-        margin-top: 1.5%;
+        margin-top: 1%;
         background: #84DAFE;
       }
       
@@ -61,11 +114,10 @@
         text-shadow: 3px 2px 4px #FFFFFF;
         /*font-family: 'Megrim', cursive;*/
         color: #374290;
-        margin-bottom: 2.5%;
+        margin-bottom: 2%;
       }
       
       h2 {
-        font-size: 30px;
         color: #374290;
       }
       
@@ -130,7 +182,7 @@
           font-size:390%;
         }
         h2{
-          font-size:25px;
+          font-size:20px;
         }
         img {
           width: 150px;
@@ -142,6 +194,10 @@
          .size {
         font-size: 15px;
         }
+      input {
+        width: 130px;
+      }
+      
       }
       
       @media (min-width:768px) {
@@ -149,7 +205,7 @@
           font-size:550%;
         }
         h2{
-          font-size:30px;
+          font-size:25px;
         }
         img {
           width: 200px;
@@ -161,6 +217,10 @@
        .size {
         font-size: 16px;
         }
+      input {
+        width: 170px;
+      }
+      
       }
     </style>
     

@@ -89,7 +89,7 @@ def get_state_abbreviation
     
     state.each do |abbreviation, full_name|
         if (@city_name.split(", ")[0].upcase == state[abbreviation].upcase) || (@city_name.split(", ")[1].upcase == state[abbreviation].upcase)
-            pp  @state = abbreviation
+            @state = abbreviation
         end
     end
     rescue
@@ -97,10 +97,14 @@ def get_state_abbreviation
     end
 end
 # get_state_abbreviation
+def get_activity_name(activity)
+    @activity = activity.gsub(/\s/, "%20").gsub("&", "%26")
+end
 
 def recreation_api
     begin
-    link = "https://ridb.recreation.gov/api/v1/recareas?limit=50&offset=0&state=" + @state + "&activity=BIKING&lastupdated=10-01-2018"
+    link = "https://ridb.recreation.gov/api/v1/recareas?limit=50&offset=0&state=" + @state + "&activity=" + @activity + "&lastupdated=10-01-2018"
+
     uri = URI.parse(link)
     request = Net::HTTP::Get.new(uri)
     request["Accept"] = "application/json"
@@ -114,24 +118,22 @@ def recreation_api
     http.request(request)
     end
 
-    recreation_data = response.body
-    hash = eval(recreation_data)
+    hash = JSON.parse(response.body)
     
     recreation_data = []
     # grabs site name
-    recreation_data << hash[:RECDATA][0][:RecAreaName]
+    recreation_data << hash["RECDATA"][0]["RecAreaName"]
     # grabs site description
-    recreation_data << hash[:RECDATA][0][:RecAreaDescription]
+    recreation_data << hash["RECDATA"][0]["RecAreaDescription"]
     # direction
-    recreation_data << hash[:RECDATA][0][:RecAreaDirections]
+    recreation_data << hash["RECDATA"][0]["RecAreaDirections"]
     # contact
-    recreation_data << hash[:RECDATA][0][:RecAreaPhone]
+    recreation_data << hash["RECDATA"][0]["RecAreaPhone"]
     rescue
-        hash = ["Sorry, city not found"]
+        hash = ["Sorry, no activity found"]
     end
-    # get the state abbreviation by the user input
 end
-# pp recreation_api[0]
+# pp recreation_api[1]
 
 def get_population_data(city)
     begin
@@ -143,7 +145,7 @@ def get_population_data(city)
             general_url = 'https://api.teleport.org/api/cities/?search=' + city.downcase
             uri = URI(general_url)
         end
-    
+  
         uri = URI(general_url)
         response = Net::HTTP.get(uri)
         result = JSON.parse(response)
@@ -173,7 +175,7 @@ def get_img(city)
         uri = URI(url)
         response = Net::HTTP.get(uri)
         result = JSON.parse(response)
-        pp result["photos"][0]["image"]["web"]
+        result["photos"][0]["image"]["web"]
     rescue
         result = ["Sorry, city not found"]
     end
