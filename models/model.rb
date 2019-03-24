@@ -87,8 +87,11 @@ def get_state_abbreviation
       'WY' => 'Wyoming'
     }
     
+    # iterates into the states hash and check if the state of the city name matches with the states in the hash
     state.each do |abbreviation, full_name|
         if (@city_name.split(", ")[0].upcase == state[abbreviation].upcase) || (@city_name.split(", ")[1].upcase == state[abbreviation].upcase)
+            
+            # set the instance variable 'state' to the abbreviation of the state
             @state = abbreviation
         end
     end
@@ -97,7 +100,9 @@ def get_state_abbreviation
     end
 end
 # get_state_abbreviation
+
 def get_activity_name(activity)
+    # modifies the activity name the user input if there is a space and a '&' symbol (useed for link)
     @activity = activity.gsub(/\s/, "%20").gsub("&", "%26")
 end
 
@@ -120,14 +125,16 @@ def recreation_api
 
     hash = JSON.parse(response.body)
     
+    # create a hash that stores recreation information
     recreation_data = []
-    # grabs site name
+    
+    #site name 
     recreation_data << hash["RECDATA"][0]["RecAreaName"]
-    # grabs site description
+    #site description
     recreation_data << hash["RECDATA"][0]["RecAreaDescription"]
-    # direction
+    #direction
     recreation_data << hash["RECDATA"][0]["RecAreaDirections"]
-    # contact
+    #contact
     recreation_data << hash["RECDATA"][0]["RecAreaPhone"]
     rescue
         hash = ["Sorry, no activity found"]
@@ -137,6 +144,7 @@ end
 
 def get_population_data(city)
     begin
+    # the two api has different names for san francisco, so I had to change one to the other
         if city == "san francisco bay area"
             url_name = "san francisco"
             general_url = 'https://api.teleport.org/api/cities/?search=' + url_name
@@ -203,6 +211,7 @@ def score(city)
         response = Net::HTTP.get(uri)
         result = JSON.parse(response)
     
+        # create a hash that stores all of the quality of life info
         elements = []
         #boston
         # 0. add commute 4.4

@@ -17,15 +17,19 @@
   </head>
   <body>
     
+    <!--city-->
     <div id="firstDiv" class="container-fluid">
       <h1 id="firstDivh1">Welcome to <%= @city_full_name %></h1>
       <h2>Population: <%= @population %></h2>
     </div>
+    
+    <!--city description-->
     <div id="secondDiv">
       <h3>Description</h3>
       <%= @city_description %>
     </div>
     
+    <!--Quality of life scores section-->
     <div id="thirdDiv">
       <h3>Quality of Life Scores</h3>
       <div class= "container">
@@ -70,6 +74,7 @@
         </div>
       <div> 
       
+      <!--javascript progress bar-->
       <script>
       function move() {
         var width = 10;
@@ -121,6 +126,7 @@
     </div>
     </div>
     
+    <!--activity section-->
     <div id="fourthDiv" class="container-fluid">
       <h1 id="fourthDivh1"><%= @activity_name %></h1>
     </div>
