@@ -195,9 +195,7 @@ def get_city_description(city)
         uri = URI(url)
         response = Net::HTTP.get(uri)
         result = JSON.parse(response)
-        result["summary"].split(/\n+/)[0..-2].join
-        # info_string.split("")[1]
-        # pp info_string
+        result["summary"].split(/\n+/)[0..-2].join #split the city summary or description into an array based on \n's and deletes the last element of the array then join the array together.
     rescue
         result = ["Sorry, city not found"]
     end
@@ -206,7 +204,7 @@ end
 
 def score(city)
     begin
-        url = 'https://api.teleport.org/api/urban_areas/slug:' + city.downcase.gsub(/\s/, "-") + '/scores/'
+        url = 'https://api.teleport.org/api/urban_areas/slug:' + city.downcase.gsub(/\s/, "-") + '/scores/' 
         uri = URI(url)
         response = Net::HTTP.get(uri)
         result = JSON.parse(response)

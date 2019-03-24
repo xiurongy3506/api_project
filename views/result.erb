@@ -19,19 +19,19 @@
     
     <!--city-->
     <div id="firstDiv" class="container-fluid">
-      <h1 id="firstDivh1">Welcome to <%= @city_full_name %></h1>
-      <h2>Population: <%= @population %></h2>
+      <h1 id="firstDivh1">Welcome to <%= @city_full_name %></h1> <!--name of the city that the user inputs-->
+      <h2>Population: <%= @population %></h2> <!--total population of the city-->
     </div>
     
     <!--city description-->
     <div id="secondDiv">
-      <h3>Description</h3>
+      <h3>Description</h3> 
       <%= @city_description %>
-    </div>
     
     <!--Quality of life scores section-->
     <div id="thirdDiv">
       <h3>Quality of Life Scores</h3>
+      <!--Bootstrap grid system used for the quality of life score bars. The code below makes the quality of life score bars appear on a single column on a small device and two columns on large devices.-->
       <div class= "container">
         <div class="row">
           <div class="col-sm-6" >
@@ -74,7 +74,8 @@
         </div>
       <div> 
       
-      <!--javascript progress bar-->
+
+      <!--Between the script tags are javascript used to make the quality of life score bars responsive-->
       <script>
       function move() {
         var width = 10;
@@ -128,7 +129,7 @@
     
     <!--activity section-->
     <div id="fourthDiv" class="container-fluid">
-      <h1 id="fourthDivh1"><%= @activity_name %></h1>
+      <h1 id="fourthDivh1"><%= @activity_name %></h1> 
     </div>
     
     <div id="fifthDiv">
@@ -151,13 +152,11 @@
         width: 100%;
         min-height:200px;
         background: rgba(74,189,172,0.6);
-        /*overflow: auto;*/
       }
       
       #thirdDiv{
         width: 100%;
         min-height: 200px;
-        /*background: rgba(252,74,26,0.6);*/
         background: #a6dcfc;
       }
       
@@ -191,12 +190,7 @@
       #firstDivh1 {
         color: white;
         text-align: center;
-        /*vertical-align: middle;*/
-        /*line-height: 200px;*/
         padding-top: 125px;
-        /*font-size: 5vw;*/
-        /*margin: auto;*/
-        /*display: inline-block;*/
       }
       #fourthDivh1{
         color: white;
@@ -210,15 +204,10 @@
         font-size: 20px;
         color: white;
         text-align: center;
-        /*font-size: 3vw;*/
-        /*margin-top: 0px;*/
-        /*padding-top: 10px;*/
       }
       h3 {
         margin-top: 0px;
-        /*margin-bottom: 0px;*/
         padding-top: 20px;
-        /*padding-bottom: 10px;*/
         text-align: center;
       }
       h4 {
@@ -230,11 +219,8 @@
       }
       p {
         margin-bottom: 0px;
-        /*padding-top: 10px;*/
-        /*padding-bottom: 10px;*/
         padding: 0px 30px 10px 30px;
         color: black;
-        /*text-align: center;*/
       }
       
       @media (min-width:480px) {
@@ -248,10 +234,6 @@
           padding-left: 50px;
           padding-right: 50px;
         }
-        /*h3 {*/
-        /*  padding-left: 50px;*/
-        /*  padding-right: 50px;*/
-        /*}*/
       }
       
       @media (min-width:768px) {
